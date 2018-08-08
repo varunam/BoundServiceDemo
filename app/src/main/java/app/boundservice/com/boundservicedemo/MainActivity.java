@@ -79,8 +79,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     
     private void getAndSetRandomNumber() {
-        int randomNumber = boundService.getRandomNumber();
-        randomNumberTextView.setText(String.valueOf(randomNumber));
+        if (isServiceBound) {
+            String randomNumber = getString(R.string.random_number) + ": " + boundService.getRandomNumber();
+            randomNumberTextView.setText(randomNumber);
+        } else
+            randomNumberTextView.setText(getString(R.string.service_not_bound));
     }
     
     private void bindService() {
